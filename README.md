@@ -1,1 +1,0 @@
-# firebase_database_auth
