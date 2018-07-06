@@ -103,7 +103,7 @@ public class LoginActivity extends AppCompatActivity {
 
                             myRef.child("Profile").child(token).child("profile_name").setValue("ercn07");
                             myRef.child("Profile").child(token).child("profile_url").setValue("http://w.google.com/icture1.img");
-                            myRef.child("Profile").child(token).child("irrigation_system").setValue("drip irrigation");
+                            myRef.child("Profile").child(token).child("irrigation_system").setValue("Damla sulama");
 
 
                             startActivity(new Intent(LoginActivity.this, HomeActivity.class));

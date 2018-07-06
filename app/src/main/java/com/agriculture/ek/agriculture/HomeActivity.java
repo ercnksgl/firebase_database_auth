@@ -1,5 +1,6 @@
 package com.agriculture.ek.agriculture;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -43,13 +44,24 @@ public class HomeActivity extends AppCompatActivity
         databaseReference = FirebaseDatabase.getInstance().getReference("Services");
 
         databaseReference.addValueEventListener(new ValueEventListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String name = dataSnapshot.child("Users").child(token).child("name").getValue(String.class);
                 String surname = dataSnapshot.child("Users").child(token).child("surname").getValue(String.class);
+                String job = dataSnapshot.child("Users").child(token).child("job").getValue(String.class);
+                String city = dataSnapshot.child("Users").child(token).child("city").getValue(String.class);
+                String email = dataSnapshot.child("Users").child(token).child("email").getValue(String.class);
+
+                String field_name = dataSnapshot.child("Fields").child(token).child("field_name").getValue(String.class);
+
+                String irrigation_system = dataSnapshot.child("Profile").child(token).child("irrigation_system").getValue(String.class);
 
 
-                name_surname.setText("Hoşgeldin\n" + name + " " + surname);
+                name_surname.setText("Adın:" + name + "\n\nSoyad:" + surname + "\n\n"+
+                        "Şehir:" + city + "\n\n"+
+                        "Email:" + email + "\n\nMeslek:" + job + "\n\n"+
+                        "Tarla Adı:" + field_name+ "\n\n"+"Sulama yöntemi:"+irrigation_system );
 
             }
 
