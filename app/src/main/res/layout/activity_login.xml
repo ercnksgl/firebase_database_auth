@@ -7,6 +7,17 @@
     android:background="#309dff"
     tools:context=".RegisterActivity">
 
+    <ImageView
+        android:id="@+id/login_activity_background_img"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/background_login" />
+
     <EditText
         android:id="@+id/login_activity_email_edt"
         android:layout_width="0dp"
@@ -63,14 +74,14 @@
         android:id="@+id/login_activity_title_txt"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="32dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:text=" Giriş Yap"
-        android:textSize="19sp"
-        android:textColor="#fff"
-        android:textStyle="bold"
         android:gravity="center"
+        android:text=" Giriş Yap"
+        android:textColor="#155e76"
+        android:textSize="21sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/login_activity_email_edt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -82,9 +93,10 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="Kayıt ol"
+        android:text="Kayıt Ol"
         android:padding="5dp"
         android:textSize="16sp"
+        android:textColor="#155e76"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
