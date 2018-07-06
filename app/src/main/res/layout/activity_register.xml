@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#309dff"
-    tools:context=".MainActivity">
+    tools:context=".RegisterActivity">
 
     <EditText
         android:id="@+id/register_activity_email_edt"
@@ -67,7 +67,7 @@
         android:layout_marginBottom="24dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:text="Kayıt Ol / Giriş Yap"
+        android:text="Kayıt Ol"
         android:textSize="19sp"
         android:textColor="#fff"
         android:textStyle="bold"
@@ -75,4 +75,20 @@
         app:layout_constraintBottom_toTopOf="@+id/register_activity_email_edt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/register_activity_login_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Giriş Yap"
+        android:padding="5dp"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/register_activity_pass_edt"
+        app:layout_constraintTop_toBottomOf="@+id/register_activity_pass_edt" />
 </android.support.constraint.ConstraintLayout>
