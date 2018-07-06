@@ -36,10 +36,14 @@ public class HomeActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
 
+
         name_surname = findViewById(R.id.home_title_text);
         firebaseAuth = FirebaseAuth.getInstance();
         if (firebaseAuth.getCurrentUser() != null) {
             token = firebaseAuth.getCurrentUser().getUid();
+        }else{
+            startActivity(new Intent(HomeActivity.this,LoginActivity.class));
+            finish();
         }
 
         databaseReference = FirebaseDatabase.getInstance().getReference("Services");
