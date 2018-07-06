@@ -1,6 +1,14 @@
 <resources>
-    <string name="app_name">Agriculture</string>
+    <string name="app_name">Çiftçi Dostu</string>
     <string name="title_activity_home">Ana Sayfa</string>
     <string name="navigation_drawer_open">Menüyü Aç</string>
     <string name="navigation_drawer_close">Menüyü Kapat</string>
+    <string name="activity_login_giris_yap_txt">Giriş Yap</string>
+    <string name="acitvity_login_kayit_ol_txt">Kayıt Ol</string>
+    <string name="activity_login_giris_btn_txt">Giriş</string>
+    <string name="sifre_txt">Şifre</string>
+    <string name="e_mail_txt">E-mail</string>
+    <string name="activity_register_giris_yap_text">Giriş Yap</string>
+    <string name="activity_register_kayit_ol_title_txt">Kayıt Ol</string>
+    <string name="activity_register_kayit_ol_btn_txt">Kayıt Ol</string>
 </resources>

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -69,51 +70,57 @@ public class LoginActivity extends AppCompatActivity {
 
 
     public void signIn() {
-        firebaseAuth.signInWithEmailAndPassword(email, pass)
-                .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
+        if(pass.length()<6){
+            Toast.makeText(this, "Şifre en az 6 karakter olmalıdır", Toast.LENGTH_SHORT).show();
+        }else if(!email.contains("@") || !email.contains(".")){
+            Toast.makeText(this, "E-mailinizi kontrol ediniz", Toast.LENGTH_SHORT).show();
+        }else {
+            firebaseAuth.signInWithEmailAndPassword(email, pass)
+                    .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
 
-                            token = firebaseAuth.getCurrentUser().getUid();
-                            Toast.makeText(LoginActivity.this, "it's okayy. You Loged", Toast.LENGTH_SHORT).show();
-
-
-                            Toast.makeText(LoginActivity.this, "Veriler Kayıt edildi.", Toast.LENGTH_SHORT).show();
-                            myRef = FirebaseDatabase.getInstance().getReference("Services");
-
-                            myRef.child("Users").child(token).child("email").setValue(email);
-                            myRef.child("Users").child(token).child("name").setValue("Ercan");
-                            myRef.child("Users").child(token).child("surname").setValue("Koseoglu");
-                            myRef.child("Users").child(token).child("age").setValue(24);
-                            myRef.child("Users").child(token).child("country").setValue("Turkey");
-                            myRef.child("Users").child(token).child("city").setValue("Tokat");
-                            myRef.child("Users").child(token).child("job").setValue("Biosistem engineer and Android Software developer");
-
-                            myRef.child("Fields").child(token).child("field_name").setValue("field001");
-                            myRef.child("Fields").child(token).child("decar").setValue(10);
-                            myRef.child("Fields").child(token).child("irrigation_system").setValue("drip irrigation");
-
-                            myRef.child("Fields").child(token).child("field_id").setValue(10);
-                            myRef.child("Fields_photos").child(token).child("field_id").child("profile_url1").setValue("http://w.google.com/icture1.img");
-                            myRef.child("Fields_photos").child(token).child("field_id").child("profile_url2").setValue("http://w.google.com/ictur.img");
-                            myRef.child("Fields_photos").child(token).child("field_id").child("profile_url3").setValue("http://w.google.com/ictu.img");
-                            myRef.child("Fields_photos").child(token).child("field_id").child("profile_url4").setValue("http://w.google.com/ict.img");
+                                token = firebaseAuth.getCurrentUser().getUid();
+                                Toast.makeText(LoginActivity.this, "Giriş Başarılı", Toast.LENGTH_SHORT).show();
 
 
-                            myRef.child("Profile").child(token).child("profile_name").setValue("ercn07");
-                            myRef.child("Profile").child(token).child("profile_url").setValue("http://w.google.com/icture1.img");
-                            myRef.child("Profile").child(token).child("irrigation_system").setValue("Damla sulama");
+
+                                myRef = FirebaseDatabase.getInstance().getReference("Services");
+
+                                myRef.child("Users").child(token).child("email").setValue(email);
+                                myRef.child("Users").child(token).child("name").setValue("Ercan");
+                                myRef.child("Users").child(token).child("surname").setValue("Koseoglu");
+                                myRef.child("Users").child(token).child("age").setValue(24);
+                                myRef.child("Users").child(token).child("country").setValue("Turkey");
+                                myRef.child("Users").child(token).child("city").setValue("Tokat");
+                                myRef.child("Users").child(token).child("job").setValue("Biosistem engineer and Android Software developer");
+
+                                myRef.child("Fields").child(token).child("field_name").setValue("field001");
+                                myRef.child("Fields").child(token).child("decar").setValue(10);
+                                myRef.child("Fields").child(token).child("irrigation_system").setValue("drip irrigation");
+
+                                myRef.child("Fields").child(token).child("field_id").setValue(10);
+                                myRef.child("Fields_photos").child(token).child("field_id").child("profile_url1").setValue("http://w.google.com/icture1.img");
+                                myRef.child("Fields_photos").child(token).child("field_id").child("profile_url2").setValue("http://w.google.com/ictur.img");
+                                myRef.child("Fields_photos").child(token).child("field_id").child("profile_url3").setValue("http://w.google.com/ictu.img");
+                                myRef.child("Fields_photos").child(token).child("field_id").child("profile_url4").setValue("http://w.google.com/ict.img");
 
 
-                            startActivity(new Intent(LoginActivity.this, HomeActivity.class));
-                            finish();
+                                myRef.child("Profile").child(token).child("profile_name").setValue("ercn07");
+                                myRef.child("Profile").child(token).child("profile_url").setValue("http://w.google.com/icture1.img");
+                                myRef.child("Profile").child(token).child("irrigation_system").setValue("Damla sulama");
 
 
+                                startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                                finish();
+
+
+                            }else{
+                                Toast.makeText(LoginActivity.this, "Bir problem ile karşılaştık. Tekrar Deneyin", Toast.LENGTH_SHORT).show();                            }
                         }
-                    }
-                });
-
+                    });
+        }
 
     }
 

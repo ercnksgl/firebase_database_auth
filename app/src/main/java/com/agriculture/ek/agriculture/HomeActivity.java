@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -108,14 +109,20 @@ public class HomeActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_profile) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+           startActivity(new Intent(HomeActivity.this,ProfileActivity.class));
+           finish();
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_premium_packages) {
+            Toast.makeText(this, "Premium Paketler", Toast.LENGTH_SHORT).show();
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_analyst) {
+            Toast.makeText(this, "Analistler", Toast.LENGTH_SHORT).show();
+
+        } else if (id == R.id.nav_settings) {
+            Toast.makeText(this, "Ayarlar", Toast.LENGTH_SHORT).show();
 
         } else if (id == R.id.nav_share) {
+            Toast.makeText(this, "Paylaş", Toast.LENGTH_SHORT).show();
 
         } else if (id == R.id.nav_exit) {
 
