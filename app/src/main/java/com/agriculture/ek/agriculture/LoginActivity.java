@@ -100,7 +100,6 @@ public class LoginActivity extends AppCompatActivity {
                             myRef.child("Fields_photos").child(token).child("field_id").child("profile_url3").setValue("http://w.google.com/ictu.img");
                             myRef.child("Fields_photos").child(token).child("field_id").child("profile_url4").setValue("http://w.google.com/ict.img");
 
-
                             myRef.child("Profile").child(token).child("profile_name").setValue("ercn07");
                             myRef.child("Profile").child(token).child("profile_url").setValue("http://w.google.com/icture1.img");
                             myRef.child("Profile").child(token).child("irrigation_system").setValue("Damla sulama");
