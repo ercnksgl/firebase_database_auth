@@ -6,18 +6,18 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_profile"
-            android:icon="@drawable/ic_user_black"
-            android:title="Import" />
+            android:icon="@drawable/ic_profile_user"
+            android:title="Profilim" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
+            android:id="@+id/nav_premium_packages"
+            android:icon="@drawable/ic_premium_package_symbol"
+            android:title="Premium Paketler" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
+            android:id="@+id/nav_analyst"
+            android:icon="@drawable/ic_analystics"
+            android:title="Analizler" />
         <item
-            android:id="@+id/nav_manage"
+            android:id="@+id/nav_settings"
             android:icon="@drawable/ic_menu_manage"
             android:title="Ayarlar" />
     </group>
@@ -30,7 +30,7 @@
                 android:title="Paylaş" />
             <item
                 android:id="@+id/nav_exit"
-                android:icon="@drawable/ic_menu_send"
+                android:icon="@drawable/ic_exit_to_app"
                 android:title="Çıkış" />
         </menu>
     </item>
