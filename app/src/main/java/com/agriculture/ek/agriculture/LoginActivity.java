@@ -73,6 +73,7 @@ public class LoginActivity extends AppCompatActivity {
         if(pass.length()<6){
             Toast.makeText(this, "Şifre en az 6 karakter olmalıdır", Toast.LENGTH_SHORT).show();
         }else if(!email.contains("@") || !email.contains(".")){
+
             Toast.makeText(this, "E-mailinizi kontrol ediniz", Toast.LENGTH_SHORT).show();
         }else {
             firebaseAuth.signInWithEmailAndPassword(email, pass)

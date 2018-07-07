@@ -43,6 +43,7 @@ public class RegisterActivity extends AppCompatActivity {
     private Spinner spinner;
     private String spinner_txt;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
