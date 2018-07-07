@@ -2,11 +2,11 @@ package com.agriculture.ek.agriculture;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,6 +17,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -32,6 +33,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText pass_edit;
     private Button register_btn;
     private TextView go_register_txt;
+    private TextView forgot_pasword_txt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,61 @@ public class LoginActivity extends AppCompatActivity {
         pass_edit = findViewById(R.id.login_activity_pass_edt);
         register_btn = findViewById(R.id.login_activity_login_btn);
         go_register_txt = findViewById(R.id.login_activity_register_txt);
+        forgot_pasword_txt = findViewById(R.id.login_activity_forgot_password_txt);
+        forgot_pasword_txt.setClickable(true);
+        forgot_pasword_txt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder1 = new AlertDialog.Builder(LoginActivity.this);
+                builder1.setTitle("Şifre Sıfırla(E-mail ile)");
+                builder1.setMessage("Şifrenizi sıfırlamak istiyor musunuz?  (Şifre değiştirmek için mailinizi kontol etmelisiniz)");
+                builder1.setCancelable(true);
+                final EditText input = new EditText(v.getContext());
+                builder1.setView(input);
+                input.setTextColor(getResources().getColor(R.color.colorGreenDark));
+                input.setHintTextColor(getResources().getColor(R.color.text_hint_color));
+                input.setTextSize(16);
+                input.setTypeface(Typeface.DEFAULT_BOLD);
+                input.setHint("E-mail");
+
+                builder1.setPositiveButton(
+                        "Evet, Sıfırla",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                if (input.getText().length() < 8 || !input.getText().toString().contains("@") || !input.getText().toString().contains(".")) {
+                                    Toast.makeText(LoginActivity.this, "Girdiğiniz E-mail eksik veya hatalı", Toast.LENGTH_SHORT).show();
+                                    dialog.cancel();
+                                } else {
+                                    FirebaseAuth.getInstance().sendPasswordResetEmail(input.getText().toString().trim())
+                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    if (task.isSuccessful()) {
+                                                        Toast.makeText(LoginActivity.this, "Şifre değiştirmek için mailinizi kontrol ediniz", Toast.LENGTH_SHORT).show();
+                                                    } else {
+                                                        Toast.makeText(LoginActivity.this, "Bir hata oluştu. Lütfen Tekrar deneyiniz.", Toast.LENGTH_SHORT).show();
+
+                                                    }
+                                                }
+                                            });
+                                }
+
+                            }
+                        });
+
+                builder1.setNegativeButton(
+                        "İptal",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+
+                AlertDialog alert11 = builder1.create();
+                alert11.show();
+            }
+        });
+
         go_register_txt.setClickable(true);
         go_register_txt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,23 +127,21 @@ public class LoginActivity extends AppCompatActivity {
 
 
     public void signIn() {
-        if(pass.length()<6){
-            Toast.makeText(this, "Şifre en az 6 karakter olmalıdır", Toast.LENGTH_SHORT).show();
-        }else if(!email.contains("@") || !email.contains(".")){
 
-            Toast.makeText(this, "E-mailinizi kontrol ediniz", Toast.LENGTH_SHORT).show();
-        }else {
-            firebaseAuth.signInWithEmailAndPassword(email, pass)
-                    .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
+
+        firebaseAuth.signInWithEmailAndPassword(email, pass)
+                .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            if (!firebaseAuth.getCurrentUser().isEmailVerified()) {
+
+                                firebaseAuth.getCurrentUser().reload();
+                                Toast.makeText(LoginActivity.this, "Email Doğrulanmadı", Toast.LENGTH_SHORT).show();
+
+                            } else {
 
                                 token = firebaseAuth.getCurrentUser().getUid();
-                                Toast.makeText(LoginActivity.this, "Giriş Başarılı", Toast.LENGTH_SHORT).show();
-
-
-
                                 myRef = FirebaseDatabase.getInstance().getReference("Services");
 
                                 myRef.child("Users").child(token).child("email").setValue(email);
@@ -107,7 +162,6 @@ public class LoginActivity extends AppCompatActivity {
                                 myRef.child("Fields_photos").child(token).child("field_id").child("profile_url3").setValue("http://w.google.com/ictu.img");
                                 myRef.child("Fields_photos").child(token).child("field_id").child("profile_url4").setValue("http://w.google.com/ict.img");
 
-
                                 myRef.child("Profile").child(token).child("profile_name").setValue("ercn07");
                                 myRef.child("Profile").child(token).child("profile_url").setValue("http://w.google.com/icture1.img");
                                 myRef.child("Profile").child(token).child("irrigation_system").setValue("Damla sulama");
@@ -116,12 +170,11 @@ public class LoginActivity extends AppCompatActivity {
                                 startActivity(new Intent(LoginActivity.this, HomeActivity.class));
                                 finish();
 
-
-                            }else{
-                                Toast.makeText(LoginActivity.this, "Bir problem ile karşılaştık. Tekrar Deneyin", Toast.LENGTH_SHORT).show();                            }
+                            }
                         }
-                    });
-        }
+                    }
+                });
+
 
     }
 
