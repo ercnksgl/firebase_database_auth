@@ -48,7 +48,6 @@ public class RegisterActivity extends AppCompatActivity {
     private String spinner_txt;
     private TextView validate_txt;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

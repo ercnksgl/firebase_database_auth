@@ -12,4 +12,5 @@
     <string name="activity_register_kayit_ol_title_txt">Kayıt Ol</string>
     <string name="activity_register_kayit_ol_btn_txt">Kayıt Ol</string>
     <string name="acitvity_login_forgot_password_txt">Şifremi Unuttum</string>
+    <string name="activity_business_ad_desc">Firmanıza, uygulamada bulunan Ziraat Mühendisi kullanıcıları için iş ilanı verin.Firmanıza en uygun pozisyonda çalışacak mühendisler için içerik oluşturun. Başvuru yapan kullanıcıların CV lerini görüntüleyerek görüşmeye davet edin.Çalışan kalifiyeli işçi bulmak firmanız için artık çok kolay!</string>
 </resources>
