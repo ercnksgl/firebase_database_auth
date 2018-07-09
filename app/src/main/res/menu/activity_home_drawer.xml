@@ -9,6 +9,14 @@
             android:icon="@drawable/ic_profile_user"
             android:title="Profilim" />
         <item
+            android:id="@+id/nav_job_advertisement"
+            android:icon="@drawable/ic_profile_user"
+            android:title="İş İlanları" />
+        <item
+            android:id="@+id/nav_job_post_ad"
+            android:icon="@drawable/ic_profile_user"
+            android:title="İş İlanı Ver" />
+        <item
             android:id="@+id/nav_premium_packages"
             android:icon="@drawable/ic_premium_package_symbol"
             android:title="Premium Paketler" />

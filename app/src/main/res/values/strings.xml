@@ -12,4 +12,5 @@
     <string name="activity_register_kayit_ol_title_txt">Kayıt Ol</string>
     <string name="activity_register_kayit_ol_btn_txt">Kayıt Ol</string>
     <string name="acitvity_login_forgot_password_txt">Şifremi Unuttum</string>
+
 </resources>

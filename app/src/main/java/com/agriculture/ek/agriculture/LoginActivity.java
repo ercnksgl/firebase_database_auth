@@ -35,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
     private TextView go_register_txt;
     private TextView forgot_pasword_txt;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
