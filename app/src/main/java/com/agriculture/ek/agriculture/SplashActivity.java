@@ -26,6 +26,7 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
         firebaseAuth = FirebaseAuth.getInstance();
 
+
         if (firebaseAuth.getCurrentUser() == null) {
             startActivity(new Intent(SplashActivity.this, LoginActivity.class));
             finish();
